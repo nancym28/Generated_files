@@ -1,9 +1,9 @@
 import { test, expect, chromium, Browser, Page, BrowserContext } from "@playwright/test";
 import * as fs from 'fs';
 
-test('Generated Test', async () => {
-  test.setTimeout(120000);
+test.setTimeout(120000);
 
+test('Generated Test', async () => {
   const executedSteps: string[] = [];
   const executionResults: any[] = [];
   const originalUserSteps: string[] = [
@@ -27,10 +27,202 @@ test('Generated Test', async () => {
     "Click on the burger bar with id react-burger-menu-btn.",
     "Click on the logout button with id logout_sidebar_link."
   ];
-
   let browser: Browser | null = null;
   let page: Page | null = null;
   let setupError = false;
+
+  const steps = [
+    {
+      "action": "goto",
+      "selector": null,
+      "value": "https://www.saucedemo.com/",
+      "waitTimeoutMs": 10000,
+      "retry": 3,
+      "fallbacks": ["waitForLoadState"],
+      "errorMessage": "Failed to navigate to saucedemo.com",
+      "stepDescription": "Navigate to https://www.saucedemo.com/."
+    },
+    {
+      "action": "fill",
+      "selector": "[data-test='username']",
+      "value": "standard_user",
+      "waitTimeoutMs": 5000,
+      "retry": 2,
+      "fallbacks": ["scrollIntoView"],
+      "errorMessage": "Failed to enter username",
+      "stepDescription": "Enter \"standard_user\" in the username field."
+    },
+    {
+      "action": "fill",
+      "selector": "[data-test='password']",
+      "value": "secret_sauce",
+      "waitTimeoutMs": 5000,
+      "retry": 2,
+      "fallbacks": ["scrollIntoView"],
+      "errorMessage": "Failed to enter password",
+      "stepDescription": "Enter \"secret_sauce\" in the password field."
+    },
+    {
+      "action": "click",
+      "selector": "[data-test='login-button']",
+      "value": null,
+      "waitTimeoutMs": 10000,
+      "retry": 3,
+      "fallbacks": ["scrollIntoView", "waitForLoadState"],
+      "errorMessage": "Failed to click login button",
+      "stepDescription": "Click the Login button."
+    },
+    {
+      "action": "click",
+      "selector": ".product_sort_container",
+      "value": null,
+      "waitTimeoutMs": 10000,
+      "retry": 3,
+      "fallbacks": ["scrollIntoView", "waitForLoadState"],
+      "errorMessage": "Failed to click product sort filter dropdown",
+      "stepDescription": "Click on the product sort filter dropdown."
+    },
+    {
+      "action": "click",
+      "selector": "option[value='za']",
+      "value": null,
+      "waitTimeoutMs": 10000,
+      "retry": 3,
+      "fallbacks": ["scrollIntoView", "waitForLoadState"],
+      "errorMessage": "Failed to select Name (Z to A)",
+      "stepDescription": "Select Name (Z to A) from the product sort filter dropdown."
+    },
+    {
+      "action": "click",
+      "selector": "[data-test='add-to-cart-sauce-labs-backpack']",
+      "value": null,
+      "waitTimeoutMs": 10000,
+      "retry": 3,
+      "fallbacks": ["scrollIntoView", "waitForLoadState"],
+      "errorMessage": "Failed to click Add to cart button for Sauce Labs Backpack",
+      "stepDescription": "Click the Add to cart button for product Sauce Labs Backpack."
+    },
+    {
+      "action": "click",
+      "selector": "[data-test='shopping-cart-link']",
+      "value": null,
+      "waitTimeoutMs": 10000,
+      "retry": 3,
+      "fallbacks": ["scrollIntoView", "waitForLoadState"],
+      "errorMessage": "Failed to click cart icon",
+      "stepDescription": "Click on the cart icon."
+    },
+    {
+      "action": "isVisible",
+      "selector": ".inventory_item_name:has-text('Sauce Labs Backpack')",
+      "value": null,
+      "waitTimeoutMs": 10000,
+      "retry": 3,
+      "fallbacks": ["scrollIntoView"],
+      "errorMessage": "Sauce Labs Backpack is not present in the cart",
+      "stepDescription": "Verify that the product Sauce Labs Backpack is present in the cart."
+    },
+    {
+      "action": "click",
+      "selector": "[data-test='checkout']",
+      "value": null,
+      "waitTimeoutMs": 10000,
+      "retry": 3,
+      "fallbacks": ["scrollIntoView", "waitForLoadState"],
+      "errorMessage": "Failed to click checkout button",
+      "stepDescription": "Click on the checkout button."
+    },
+    {
+      "action": "fill",
+      "selector": "[data-test='firstName']",
+      "value": "chaitanya",
+      "waitTimeoutMs": 5000,
+      "retry": 2,
+      "fallbacks": ["scrollIntoView"],
+      "errorMessage": "Failed to enter first name",
+      "stepDescription": "Enter \"chaitanya\" in the first name field."
+    },
+    {
+      "action": "fill",
+      "selector": "[data-test='lastName']",
+      "value": "Kompella",
+      "waitTimeoutMs": 5000,
+      "retry": 2,
+      "fallbacks": ["scrollIntoView"],
+      "errorMessage": "Failed to enter last name",
+      "stepDescription": "Enter \"Kompella\" in the last name field."
+    },
+    {
+      "action": "fill",
+      "selector": "[data-test='postalCode']",
+      "value": "62567352",
+      "waitTimeoutMs": 5000,
+      "retry": 2,
+      "fallbacks": ["scrollIntoView"],
+      "errorMessage": "Failed to enter postal code",
+      "stepDescription": "Enter \"62567352\" in the postal code field."
+    },
+    {
+      "action": "click",
+      "selector": "[data-test='continue']",
+      "value": null,
+      "waitTimeoutMs": 10000,
+      "retry": 3,
+      "fallbacks": ["scrollIntoView", "waitForLoadState"],
+      "errorMessage": "Failed to click continue button",
+      "stepDescription": "Click on the continue button."
+    },
+    {
+      "action": "click",
+      "selector": "[data-test='finish']",
+      "value": null,
+      "waitTimeoutMs": 10000,
+      "retry": 3,
+      "fallbacks": ["scrollIntoView", "waitForLoadState"],
+      "errorMessage": "Failed to click finish button",
+      "stepDescription": "Click on the finish button."
+    },
+    {
+      "action": "isVisible",
+      "selector": "text=Thank you for your order!",
+      "value": null,
+      "waitTimeoutMs": 10000,
+      "retry": 3,
+      "fallbacks": ["scrollIntoView"],
+      "errorMessage": "Thank you for your order! message not visible",
+      "stepDescription": "Verify the text \"Thank you for your order!\""
+    },
+    {
+      "action": "click",
+      "selector": "[data-test='back-to-products']",
+      "value": null,
+      "waitTimeoutMs": 10000,
+      "retry": 3,
+      "fallbacks": ["scrollIntoView", "waitForLoadState"],
+      "errorMessage": "Failed to click back to home button",
+      "stepDescription": "Click on the back to home button."
+    },
+    {
+      "action": "click",
+      "selector": "#react-burger-menu-btn",
+      "value": null,
+      "waitTimeoutMs": 10000,
+      "retry": 3,
+      "fallbacks": ["scrollIntoView", "waitForLoadState"],
+      "errorMessage": "Failed to click burger bar",
+      "stepDescription": "Click on the burger bar."
+    },
+    {
+      "action": "click",
+      "selector": "#logout_sidebar_link",
+      "value": null,
+      "waitTimeoutMs": 10000,
+      "retry": 3,
+      "fallbacks": ["scrollIntoView", "waitForLoadState"],
+      "errorMessage": "Failed to click logout button",
+      "stepDescription": "Click on the logout button."
+    }
+  ];
 
   try {
     try {
@@ -60,199 +252,6 @@ test('Generated Test', async () => {
     }
 
     if (!setupError && page) {
-      const steps = [
-        {
-          "action": "goto",
-          "selector": null,
-          "value": "https://www.saucedemo.com/",
-          "waitTimeoutMs": 10000,
-          "retry": 3,
-          "fallbacks": ["waitForLoadState"],
-          "errorMessage": "Failed to navigate to https://www.saucedemo.com/.",
-          "stepDescription": "Navigate to https://www.saucedemo.com/."
-        },
-        {
-          "action": "fill",
-          "selector": "[data-test='username']",
-          "value": "standard_user",
-          "waitTimeoutMs": 5000,
-          "retry": 2,
-          "fallbacks": ["scrollIntoView"],
-          "errorMessage": "Failed to enter username",
-          "stepDescription": "Enter \"standard_user\" in the username field."
-        },
-        {
-          "action": "fill",
-          "selector": "[data-test='password']",
-          "value": "secret_sauce",
-          "waitTimeoutMs": 5000,
-          "retry": 2,
-          "fallbacks": ["scrollIntoView"],
-          "errorMessage": "Failed to enter password",
-          "stepDescription": "Enter \"secret_sauce\" in the password field."
-        },
-        {
-          "action": "click",
-          "selector": "[data-test='login-button']",
-          "value": null,
-          "waitTimeoutMs": 10000,
-          "retry": 3,
-          "fallbacks": ["scrollIntoView", "waitForLoadState"],
-          "errorMessage": "Failed to click the Login button",
-          "stepDescription": "Click the Login button."
-        },
-        {
-          "action": "click",
-          "selector": "[data-test='product-sort-container']",
-          "value": null,
-          "waitTimeoutMs": 10000,
-          "retry": 3,
-          "fallbacks": ["scrollIntoView", "waitForLoadState"],
-          "errorMessage": "Failed to click on the product sort filter dropdown",
-          "stepDescription": "Click on the product sort filter dropdown."
-        },
-        {
-          "action": "click",
-          "selector": "[data-test='product-sort-container'] >> option:has-text('Name (Z to A)')",
-          "value": null,
-          "waitTimeoutMs": 10000,
-          "retry": 3,
-          "fallbacks": ["scrollIntoView", "waitForLoadState"],
-          "errorMessage": "Failed to select Name (Z to A) from the product sort filter dropdown",
-          "stepDescription": "Select Name (Z to A) from the product sort filter dropdown."
-        },
-        {
-          "action": "click",
-          "selector": "[data-test='add-to-cart-sauce-labs-backpack']",
-          "value": null,
-          "waitTimeoutMs": 10000,
-          "retry": 3,
-          "fallbacks": ["scrollIntoView", "waitForLoadState"],
-          "errorMessage": "Failed to click the Add to cart button for product Sauce Labs Backpack",
-          "stepDescription": "Click the Add to cart button for product Sauce Labs Backpack."
-        },
-        {
-          "action": "click",
-          "selector": "[data-test='shopping-cart-link']",
-          "value": null,
-          "waitTimeoutMs": 10000,
-          "retry": 3,
-          "fallbacks": ["scrollIntoView", "waitForLoadState"],
-          "errorMessage": "Failed to click on the cart icon",
-          "stepDescription": "Click on the cart icon."
-        },
-        {
-          "action": "isVisible",
-          "selector": ".cart_item:has-text('Sauce Labs Backpack')",
-          "value": null,
-          "waitTimeoutMs": 10000,
-          "retry": 3,
-          "fallbacks": ["scrollIntoView"],
-          "errorMessage": "Product Sauce Labs Backpack is not present in the cart",
-          "stepDescription": "Verify that the product Sauce Labs Backpack is present in the cart."
-        },
-        {
-          "action": "click",
-          "selector": "[data-test='checkout']",
-          "value": null,
-          "waitTimeoutMs": 10000,
-          "retry": 3,
-          "fallbacks": ["scrollIntoView", "waitForLoadState"],
-          "errorMessage": "Failed to click on the checkout button",
-          "stepDescription": "Click on the checkout button."
-        },
-        {
-          "action": "fill",
-          "selector": "[data-test='first-name']",
-          "value": "chaitanya",
-          "waitTimeoutMs": 5000,
-          "retry": 2,
-          "fallbacks": ["scrollIntoView"],
-          "errorMessage": "Failed to enter first name",
-          "stepDescription": "Enter \"chaitanya\" in the first name field."
-        },
-        {
-          "action": "fill",
-          "selector": "[data-test='last-name']",
-          "value": "Kompella",
-          "waitTimeoutMs": 5000,
-          "retry": 2,
-          "fallbacks": ["scrollIntoView"],
-          "errorMessage": "Failed to enter last name",
-          "stepDescription": "Enter \"Kompella\" in the last name field."
-        },
-        {
-          "action": "fill",
-          "selector": "[data-test='postal-code']",
-          "value": "62567352",
-          "waitTimeoutMs": 5000,
-          "retry": 2,
-          "fallbacks": ["scrollIntoView"],
-          "errorMessage": "Failed to enter postal code",
-          "stepDescription": "Enter \"62567352\" in the postal code field."
-        },
-        {
-          "action": "click",
-          "selector": "[data-test='continue']",
-          "value": null,
-          "waitTimeoutMs": 10000,
-          "retry": 3,
-          "fallbacks": ["scrollIntoView", "waitForLoadState"],
-          "errorMessage": "Failed to click on the continue button",
-          "stepDescription": "Click on the continue button."
-        },
-        {
-          "action": "click",
-          "selector": "[data-test='finish']",
-          "value": null,
-          "waitTimeoutMs": 10000,
-          "retry": 3,
-          "fallbacks": ["scrollIntoView", "waitForLoadState"],
-          "errorMessage": "Failed to click on the finish button",
-          "stepDescription": "Click on the finish button."
-        },
-        {
-          "action": "isVisible",
-          "selector": "text=Thank you for your order!",
-          "value": null,
-          "waitTimeoutMs": 10000,
-          "retry": 3,
-          "fallbacks": ["scrollIntoView"],
-          "errorMessage": "The text \"Thank you for your order!\" is not visible",
-          "stepDescription": "Verify the text \"Thank you for your order!\""
-        },
-        {
-          "action": "click",
-          "selector": "[data-test='back-to-products']",
-          "value": null,
-          "waitTimeoutMs": 10000,
-          "retry": 3,
-          "fallbacks": ["scrollIntoView", "waitForLoadState"],
-          "errorMessage": "Failed to click on the back to home button",
-          "stepDescription": "Click on the back to home button."
-        },
-        {
-          "action": "click",
-          "selector": "#react-burger-menu-btn",
-          "value": null,
-          "waitTimeoutMs": 10000,
-          "retry": 3,
-          "fallbacks": ["scrollIntoView", "waitForLoadState"],
-          "errorMessage": "Failed to click on the burger bar",
-          "stepDescription": "Click on the burger bar."
-        },
-        {
-          "action": "click",
-          "selector": "#logout_sidebar_link",
-          "value": null,
-          "waitTimeoutMs": 10000,
-          "retry": 3,
-          "fallbacks": ["scrollIntoView", "waitForLoadState"],
-          "errorMessage": "Failed to click on the logout button",
-          "stepDescription": "Click on the logout button."
-        }
-      ];
-
       if (steps.length === 0) {
         executionResults.push({
           step: "No Steps Provided",
@@ -301,7 +300,7 @@ test('Generated Test', async () => {
                 const isVisible = await page.locator(stepData.selector).isVisible();
                 stepDetails = `Element ${stepData.selector} is ${isVisible ? 'visible' : 'not visible'}`;
                 if (!isVisible) {
-                  stepStatus = 'error';
+                  stepStatus = "error";
                 }
                 break;
               default:
@@ -355,14 +354,17 @@ test('Generated Test', async () => {
     }
 
     const totalDuration = executionResults.reduce((sum, r) => sum + r.duration_ms, 0);
+    const passedCount = executionResults.filter(r => r.status === 'success').length;
+    const failedCount = executionResults.filter(r => r.status === 'error').length;
+
     const result = {
       user_test_steps: originalUserSteps,
       executed_test_steps: executedSteps,
       execution_results: executionResults,
       summary: {
         total_steps: executionResults.length,
-        passed: executionResults.filter(r => r.status === 'success').length,
-        failed: executionResults.filter(r => r.status === 'error').length,
+        passed: passedCount,
+        failed: failedCount,
         duration_ms: totalDuration
       }
     };
