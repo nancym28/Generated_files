@@ -15,7 +15,7 @@ test('Generated Test', async () => {
     "Click on the shopping cart link with data-test 'shopping-cart-link'.",
     "Ensure that the product is present in the cart.",
     "Click on the checkout button with data-test 'checkout'.",
-    "Enter \"dharanesh\" in the first name field with id 'first-name'.",
+    "Enter \"chai\" in the first name field with id 'first-name'.",
     "Enter \"Kompella\" in the last name field with id 'last-name'.",
     "Enter \"62567352\" in postal code field with id 'postal-code'.",
     "Click on continue button with data-test 'continue'.",
